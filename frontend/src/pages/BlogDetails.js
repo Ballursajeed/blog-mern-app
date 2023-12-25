@@ -41,7 +41,7 @@ try {
 
  console.log(inputs);
 
- const { data } = await axios.put(`/api/v1/blogs/update-blog/${id}`,{
+ const { data } = await axios.put(`${baseURI}/api/v1/blogs/update-blog/${id}`,{
     title:inputs.title , description: inputs.description,
     image:inputs.image, user:Id
  })
