@@ -1,0 +1,125 @@
+
+import { User } from "../models/user.model.js";
+import bcrypt from "bcrypt";
+
+const getAllUsers = async(req,res) => {
+
+ try {
+    const user = await User.find({})
+    return res.status(200)
+    .send({
+         userCount: user.length,
+         success: true,
+         message: "All user data",
+         user
+    })
+ } catch (error) {
+      throw new Error(error);
+ }
+
+}
+
+const userRegister = async(req,res) => {
+
+ try {
+
+    const { username, email, password } = req.body;
+
+    //validation
+  if (!username || !email || !password) {
+       return res.status(400)
+       .send({
+          success: false,
+          message: "Please fill all fields"
+       })
+  }
+
+  //check existing user
+  const existingUser = await User.findOne({ email })
+  if (existingUser) {
+        return res.status(200)
+       .send({
+          success: false,
+          message: "User is already exist"
+       })
+  }
+
+ //hash password
+ const hashedPassword = await bcrypt.hash(password,10);
+
+ //save new user
+ const user = await User.create({
+      username,
+      email,
+      password: hashedPassword
+ })
+
+ return res.status(200)
+ .send({
+          success: true,
+          message: "User registered successfully!!"   ,
+          user
+       })
+
+ } catch (error) {
+     console.log("Error in user register:",error);
+     return res.status(500).send({
+           message:"Error in Register callback",
+           succcess: false,
+           error
+     })
+ }
+
+}
+
+const userLogin = async(req,res) => {
+ const { email, password } = req.body;
+
+ if (!email || !password) {
+  return res.status(401)
+  .send({
+       success: false,
+       message: "Please provide email or password"
+  })
+ }
+
+ const user = await User.findOne({ email})
+ if (!user) {
+       return res.status(401)
+  .send({
+       success: false,
+       message: "Email is not registered."
+  })
+ }
+
+ //password
+ const isMatch =  await bcrypt.compare(password, user.password);
+ console.log("User:",user);
+ console.log("password:",user.password)
+ if (!isMatch) {
+      return res.status(401)
+  .send({
+       success: false,
+       message: "Invalid email or password"
+  })
+ }
+
+ return res.status(200)
+ .send({
+    success: true,
+    message: "Login successfully",
+    user
+ })
+
+}
+
+const userLogout = (req,res) => {
+ res.send("User logged out!!");
+}
+
+export {
+   getAllUsers,
+   userRegister,
+   userLogin,
+   userLogout
+}

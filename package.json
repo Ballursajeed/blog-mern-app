@@ -1,0 +1,14 @@
+{
+  "name": "blog-mern-app",
+  "version": "1.0.0",
+  "description": "A blog app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sajeed",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
