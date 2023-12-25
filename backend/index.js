@@ -12,7 +12,23 @@ const app = express()
 const PORT = process.env.PORT || 8000
 
 //middleware
-app.use(cors())
+const allowedOrigins = [
+  'https://task-management-app-client-tau.vercel.app',
+  // Add any other origins that should be allowed
+];
+
+// Configure CORS with specific origin(s)
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+  })
+);
 app.use(express.json())
 app.use(morgan("dev"))
 

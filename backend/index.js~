@@ -5,7 +5,8 @@ import cors from "cors";
 import morgan from "morgan";
 import colors from "colors";
 import { connectDB } from "./db/index.db.js";
-import userRouter from "./routes/user.router.js"
+import userRouter from "./routes/user.router.js";
+import blogRouter from "./routes/blog.router.js";
 
 const app = express()
 const PORT = process.env.PORT || 8000
@@ -26,7 +27,8 @@ app.get("/",(req,res) => {
 });
 
 //user router
-app.use("/api/user",userRouter);
+app.use("/api/v1/user",userRouter);
+app.use("/api/v1/blogs",blogRouter)
 
 //listen
 app.listen(PORT, () => {
