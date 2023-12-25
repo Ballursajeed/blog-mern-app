@@ -1,6 +1,7 @@
 import React,{ useState, useEffect } from "react"
 import axios from "axios";
 import BlogCard from "../components/BlogCard"
+import toast from 'react-hot-toast';
 
 const Blog = () => {
 	const [blogs, setBlogs ] = useState([]) // eslint-disable-next-line

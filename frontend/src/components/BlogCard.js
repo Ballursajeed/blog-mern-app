@@ -12,6 +12,7 @@ import { Box, IconButton, useTheme } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import toast from 'react-hot-toast';
+import { baseURI } from "../constants/url.js"
 
 export default function BlogCard({ title,
  description,
@@ -34,7 +35,7 @@ export default function BlogCard({ title,
   const handleDelete = async() => {
       try {
 
-       const { data } = await axios.delete(`/api/v1/blogs/delete-blog/${id}`)
+       const { data } = await axios.delete(`${baseURI}/api/v1/blogs/delete-blog/${id}`)
          if (data?.success) {
               toast.success("Post Deleted successfully");
              window.location.reload();

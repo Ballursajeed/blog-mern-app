@@ -3,6 +3,7 @@ import {Box, Typography, InputLabel, TextField,Button, useTheme} from "@mui/mate
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import toast from 'react-hot-toast';
+import { baseURI } from "../constants/url.js"
 
 const CreateBlog = () => {
 
@@ -23,7 +24,7 @@ try {
 
  console.log(inputs);
 
- const { data } = await axios.post('/api/v1/blogs/create-blog',{
+ const { data } = await axios.post(`${baseURI}/api/v1/blogs/create-blog`,{
     title:inputs.title , description: inputs.description,
     image:inputs.image, user:Id
  })

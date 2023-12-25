@@ -2,6 +2,7 @@ import React,{ useState, useEffect } from "react"
 import axios from "axios";
 import BlogCard from "../components/BlogCard"
 import toast from 'react-hot-toast';
+import { baseURI } from "../constants/url.js"
 
 const Blog = () => {
 	const [blogs, setBlogs ] = useState([]) // eslint-disable-next-line
@@ -10,7 +11,7 @@ const Blog = () => {
   const getAllBlogs = async() => {
    try {
 
-     const { data } = await axios.get("/api/v1/blogs/all-blogs")
+     const { data } = await axios.get(`${baseURI}/api/v1/blogs/all-blogs`)
 
    if (data?.success === false) {
      const errorMessage = data.message;

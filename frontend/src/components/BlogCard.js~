@@ -46,7 +46,7 @@ export default function BlogCard({ title,
   }
 
   return (
-    <Card sx={{ width:'40%',
+    <Card sx={{ width:'30%',
     margin:"auto",
      mt:2,
       padding:2,

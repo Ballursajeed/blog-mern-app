@@ -1,6 +1,6 @@
 import React from "react"
 import axios from "axios"
-import {Box, Typography, InputLabel, TextField,Button} from "@mui/material"
+import {Box, Typography, InputLabel, TextField,Button, useTheme} from "@mui/material"
 import { useParams,useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 
@@ -14,7 +14,7 @@ const BlogDetails = () => {
   const Id = localStorage.getItem('userId')
 
   const navigate = useNavigate()
-
+  const theme = useTheme()
  const getBlogDetails = async () => {
       try {
 

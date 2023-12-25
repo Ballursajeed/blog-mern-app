@@ -3,6 +3,7 @@ import axios from "axios"
 import {Box, Typography, InputLabel, TextField,Button, useTheme} from "@mui/material"
 import { useParams,useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
+import { baseURI } from "../constants/url.js"
 
 const BlogDetails = () => {
 
@@ -18,7 +19,7 @@ const BlogDetails = () => {
  const getBlogDetails = async () => {
       try {
 
-        const { data } = await axios.get(`/api/v1/blogs/single-blog/${id}`)
+        const { data } = await axios.get(`${baseURI}/api/v1/blogs/single-blog/${id}`)
         if (data?.success) {
              setBlog(data?.blog)
              setInputs({
