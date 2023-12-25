@@ -22,8 +22,6 @@ const handleSubmit = async(e) => {
  e.preventDefault()
 try {
 
- console.log(inputs);
-
  const { data } = await axios.post(`${baseURI}/api/v1/blogs/create-blog`,{
     title:inputs.title , description: inputs.description,
     image:inputs.image, user:Id
