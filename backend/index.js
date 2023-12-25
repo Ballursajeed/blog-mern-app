@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8000
 
 //middleware
 const allowedOrigins = [
-  'https://task-management-app-client-tau.vercel.app',
+  'https://blog-mern-app-client.vercel.app',
   // Add any other origins that should be allowed
 ];
 
