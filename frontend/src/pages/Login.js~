@@ -36,6 +36,12 @@ const Login = () => {
    	 email:inputs.email,
    	 password:inputs.password
    	 });
+
+   if (data?.success === false) {
+     const errorMessage = data.message;
+      toast.error(`Error: ${errorMessage}`);
+  }
+
    if (data.success) {
    	localStorage.setItem("userId",data?.user._id);
    	  dispatch(authActions.login());

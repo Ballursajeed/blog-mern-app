@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { authActions } from "../Redux/store"
 import toast from 'react-hot-toast';
+import { baseURI } from "../constants/url.js"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const Login = () => {
    e.preventDefault()
   try {
 
-   const { data } = await axios.post("/api/v1/user/login",{
+   const { data } = await axios.post(`${baseURI}/api/v1/user/login`,{
    	username: inputs.name,
    	 email:inputs.email,
    	 password:inputs.password
