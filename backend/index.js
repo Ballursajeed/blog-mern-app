@@ -20,13 +20,7 @@ const allowedOrigins = [
 // Configure CORS with specific origin(s)
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: 'https://blog-mern-app-client.vercel.app'
   })
 );
 app.use(express.json())
